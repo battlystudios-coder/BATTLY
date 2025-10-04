@@ -7,7 +7,7 @@
   "author": "BATTLY COMPANY",
   "url": "https://api.battlylauncher.com/battlylauncher",
   "engines": {
-    "node": "^18.x.x"
+    "node": "^20.x.x"
   },
   "scripts": {
     "start:dev": "cross-env-shell NODE_ENV=dev electron .",
