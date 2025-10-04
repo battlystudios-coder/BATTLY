@@ -34,7 +34,7 @@ const RELEASE_API = "https://github.com/battlystudios-coder/BATTLY-LAUNCHER/rele
 
 const tempFolder = path.join(process.env.LOCALAPPDATA, 'Temp', 'Battly Launcher');
 let battlyFolder = path.join(installationPath);
-let battlyZIP = path.join(tempFolder, "Battly-Launcher-win.zip");
+let battlyZIP = path.join(tempFolder, "Battly-Launcher-setup-1.0.6.exe");
 
 
 let indexInstallPages = {
