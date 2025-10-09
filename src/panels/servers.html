@@ -1,0 +1,287 @@
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+    }
+
+    .fullscreen-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 5vw;
+        background: linear-gradient(90deg, #d03e3e 0%, #ff7fac 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        white-space: nowrap;
+    }
+
+
+
+    .box2>span {
+        font-size: 20px;
+        background: linear-gradient(90deg, #d03e3e 0%, #ff7fac 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 600;
+    }
+
+    .scaleup {
+        animation: scaleUp 5s ease-in-out
+    }
+
+    .fadeout {
+        animation: fadeout 1.5s ease-in-out
+    }
+
+    @keyframes scaleUp {
+        0% {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        100% {
+            transform: translate(-50%, -50%) scale(500);
+        }
+    }
+
+    @keyframes fadeout {
+        0% {
+            transform: translate(-50%, -50%) scale(500);
+            opacity: 1;
+        }
+
+        100% {
+            transform: translate(-50%, -50%) scale(500);
+            opacity: 0;
+        }
+    }
+
+    .panel-container {
+        display: none;
+        text-align: center;
+        margin: 50px;
+        align-items: center;
+        justify-content: center;
+        --animate-duration: 500ms;
+        height: 80dvh;
+    }
+
+    .panel-container-creating {
+        display: none;
+        text-align: center;
+        margin: 50px;
+        align-items: center;
+        justify-content: center;
+        --animate-duration: 500ms;
+        height: 80dvh;
+    }
+
+    .box2 {
+        width: 40%;
+        background-color: #212121;
+        border-radius: 10px !important;
+        color: white;
+        font-weight: 600;
+    }
+
+    .box2 h1 {
+        font-size: 40px;
+        line-height: 1;
+    }
+
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    .control input {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    .input-field {
+        margin-bottom: 20px;
+    }
+
+    .mcversion {
+        /* flex column */
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mcversion p {
+        font-size: 20px;
+        color: white;
+        text-align: start;
+    }
+
+    .notification {
+        display: none;
+    }
+
+    .help {
+        font-size: 15px;
+        animation: fadeIn 0.5s infinite alternate;
+        text-align: start;
+    }
+
+    @keyframes fadeIn {
+        0% {
+            opacity: 0.7;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    .field {
+        text-align: start;
+    }
+
+    .control-buttons-create-server {
+        display: flex;
+        justify-content: flex-end;
+        gap: 5px;
+        margin-top: 30px;
+    }
+
+    #warningMessage {
+        text-align: start;
+        padding: 10px !important;
+        font-size: 15px;
+    }
+
+    .creating-server-text {
+        font-size: 35px;
+    }
+
+    .download-status-server {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+    }
+</style>
+<div class="fullscreen-text" style="display: none;">Battly Server</div>
+<div class="panel-container animate__animated">
+    <div class="box box2">
+        <span>Server Battly</span>
+        <h1>Creiamo il tuo server</h1>
+        <br>
+        <p style="font-size: 20px; text-align: start;">Dominio del server</p>
+        <input id="domainInput" class="input is-info" type="text" maxlength="20" placeholder="Introduce el dominio">
+        <p class="help">L'IP sarà: <span id="serverIP">dominio.battly.site</span></p>
+        <div class="notification is-danger" id="warningMessage">
+            Dominio non consentito! Non può contenere parole come api, server, official o battly.
+        </div>
+        <br>
+        <div class="field mcversion">
+            <p>Versione di Minecraft</p>
+            <div class="select is-info is-small">
+                <select id="versionSelectServers" style="width: 100%;">
+                </select>
+            </div>
+        </div>
+        <div class="control-buttons-create-server">
+            <button class="button is-danger">Cancella</button>
+            <button class="button is-info" id="create-server">Crea server</button>
+        </div>
+    </div>
+</div>
+<div class="panel-container-creating">
+    <div class="box" id="download-server-status-panel">
+        <span>Server Battly</span>
+        <p class="creating-server-text">Creazione del server</p>
+        <progress class="progress is-small is-info" max="100">45%</progress>
+        <div class="download-status-server">
+            <p class="whatisdownloading">
+                Configurazione del server
+            </p>
+            <p class="percentajewhatisloading">
+                100% <i class="fa-solid fa-check"></i>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="servers-main-panel" style="display: none;">
+    <div class="servers-principal-panel">
+        <div class="servers-principal-panel-header">
+            Benvenuti ai server di Battly
+        </div>
+        <div class="servers-principal-panel-content" style="display: flex;">
+            <div class="servers-principal-panel-content-server-left-bar">
+                <button class="button is-info"><i class="fa-solid fa-house"></i> <span>Generale</span></button><button
+                    class="button is-info"><i class="fa-solid fa-user-group"></i>
+                    <span>Giocatori</span></button><button class="button is-info"><i class="fa-solid fa-terminal"></i>
+                    <span>Console</span></button>
+                <button class="button is-info"><i class="fa-solid fa-gears"></i> <span>Opzioni</span></button>
+                <button class="button is-info"><i class="fa-solid fa-cube"></i> <span>ModLoader</span></button>
+                <button class="button is-info"><i class="fa-solid fa-folder"></i> <span>File</span></button>
+                <button class="button is-info"><i class="fa-solid fa-file-lines"></i> <span>Logs</span></button>
+            </div>
+            <div class="servers-principal-panel-content-server">
+                <p class="servers-principal-panel-content-server-title"><i class="fa-solid fa-house"></i>
+                    <span>Generale</span>
+                </p>
+                <br>
+                <div class="servers-principal-panel-content-server-panel">
+                    <p class="servers-principal-panel-content-server-header-title">Server di prova</p>
+                    <p class="servers-principal-panel-content-server-header-subtitle">test.battly.site:25500 <i
+                            class="fa-solid fa-copy"></i></p>
+                    <br>
+                    <div style="height: 50px; border-radius: 10px; background-color: #ff5454; align-items: center; justify-content: center; display: flex;"
+                        id="server-status-panel">
+                        <p style="font-size: 20px" id="server-status-text">Server è offline</p>
+                    </div>
+                </div>
+                <br>
+                <button class="button is-success notchange" id="start-server-button"><i class="fa-solid fa-power-off"
+                        style="margin-right: 5px;"></i>
+                    Avvia il server</button>
+                <button class="button is-danger notchange" id="stop-server-button" style="display: none;"><i
+                        class="fa-solid fa-power-off" style="margin-right: 5px;"></i>
+                    Spegnere il server</button>
+                <br>
+                <br>
+                <button class="button is-link is-small notchange" id="connect-to-server-button" disabled>Connettiti al server</button>
+                <br>
+            </div>
+            <div class="servers-principal-panel-content-server">
+                <p class="servers-principal-panel-content-server-title">Giocatori</p>
+                <br>
+                <div class="servers-principal-panel-content-server-content">
+                    <div class="servers-principal-panel-content-server-content-players">
+                        <div class="servers-principal-panel-content-server-content-players-button-principal-options">
+                            <button class="button is-info">Whitelist</button>
+                            <button class="button is-info">Operatori</button>
+                            <button class="button is-danger notchange">Giocatori bannati</button>
+                            <button class="button is-info">IP bannati</button>
+                        </div>
+                        <br>
+                        <p class="servers-principal-panel-content-server-content-players-title">Elenco dei giocatori online</p>
+                        <div class="servers-principal-panel-content-server-content-players-players">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="servers-principal-panel-content-server">
+                <p class="servers-principal-panel-content-server-title">Console</p>
+                <br>
+                <textarea class="textarea" id="server-logs" readonly>Questo contenuto è di sola lettura</textarea>
+                <input class="input" type="text" placeholder="Text input">
+            </div>
+        </div>
+
+    </div>

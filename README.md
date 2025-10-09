@@ -1,2 +1,2 @@
-# BATTLY
+# BATTLY-LAUNCHER - v1.0.0
 
